@@ -4,7 +4,7 @@ Essa é uma API que visa trazer dados de locais que tiveram alagamentos na cidad
 
 ## Documentação da API
 
-#### Retorna a data do alagamento e uma lista de endereços com latitude, longitude e hora dos alagamento
+#### Retorna a data do alagamento e uma lista de endereços com latitude, longitude e hora dos alagamentos
 
 ```http
   POST /api/v1/alagamentos
