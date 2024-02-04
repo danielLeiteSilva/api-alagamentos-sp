@@ -22,10 +22,6 @@ http://google.com.br
 
 #### Exemplo de requisição
 
-```url
-http://google.com.br
-```
-
 ```JSON
 {
   "data": "29/01/2024"
