@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 
 
-app.post("/api/v1/alagamentos", async (req, res) => {
+app.get("/api/v1/alagamentos", async (req, res) => {
 
   const client = await redis.createClient({url: "redis://0.0.0.0:6379"})
   .on('error', err => console.log('Redis Client Error', err))
