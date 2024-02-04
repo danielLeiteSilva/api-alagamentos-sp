@@ -12,7 +12,7 @@ Essa é uma API que visa trazer dados de locais que tiveram alagamentos na cidad
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `data` | `01/01/2020` | **Obrigatório**. A chave da sua API |
+| `data` | `01/01/2020` | **Obrigatório** |
 
 #### Exemplo de requisição
 
