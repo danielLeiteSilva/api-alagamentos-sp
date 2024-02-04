@@ -16,6 +16,10 @@ Essa é uma API que visa trazer dados de locais que tiveram alagamentos na cidad
 
 #### Exemplo de requisição
 
+```url
+http://google.com.br
+```
+
 ```JSON
 {
   "data": "29/01/2024"
