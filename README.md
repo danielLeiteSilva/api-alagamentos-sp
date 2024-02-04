@@ -1,4 +1,4 @@
-# API para monitoração de alagamentos na cidade de São Paulo
+# API alagamentos na cidade de São Paulo
 
 Essa é uma API que visa trazer dados de locais que tiveram alagamentos na cidade de São Paulo. Com esses dados, podemos realizar a monitoração dos locais que mais alagam e, também, analisar esses dados para criar soluções mais efetivas através de ciência de dados.
 
