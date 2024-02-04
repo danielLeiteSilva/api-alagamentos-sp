@@ -3,7 +3,7 @@ const request = require('request')
 async function latLong(address) {
     return new Promise((resolve) => {
         try {
-            request.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(address)}&key=AIzaSyBUdnRFDvnIE2TKUMH9xIU1ti40mG4jJl0`, (error, response, body) => {
+            request.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(address)}&key=${process.env.API_GOOGLE}`, (error, response, body) => {
                 if (!error) {
                     if (response.statusCode === 200) {
                         const { location } = JSON.parse(body)['results'][0]['geometry']

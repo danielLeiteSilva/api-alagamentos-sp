@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express")
 const { getDada } = require("./automation")
 const redis = require("redis")
@@ -6,6 +7,13 @@ const app = express()
 
 app.use(express.json())
 
+
+app.get("/api/v1", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    connected: true
+  })
+})
 
 app.get("/api/v1/alagamentos", async (req, res) => {
 
