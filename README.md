@@ -14,6 +14,12 @@ Essa é uma API que visa trazer dados de locais que tiveram alagamentos na cidad
 | :---------- | :--------- | :---------------------------------- |
 | `data` | `01/01/2020` | **Obrigatório** |
 
+#### Endereço de API
+
+```url
+http://google.com.br
+```
+
 #### Exemplo de requisição
 
 ```url
