@@ -2,11 +2,19 @@ require("dotenv").config()
 const express = require("express")
 const { getDada } = require("./automation")
 const redis = require("redis")
-
+const fs = require("fs")
 const app = express()
 
-app.use(express.json())
+const swaggerUi = require('swagger-ui-express');
 
+const buffer = fs.readFileSync("./swagger-output.json")
+const base64 = Buffer.from(buffer).toString()
+const toJson = JSON.parse(base64)
+
+//Use
+app.use('/api/v1/swagger-ui', swaggerUi.serve, swaggerUi.setup(toJson));
+
+app.use(express.json())
 
 app.get("/api/v1", (req, res) => {
   res.status(200).json({
