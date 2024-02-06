@@ -31,7 +31,7 @@ class NavigationService {
     })
     const search: any = await page.$x(this.ID_BUSCA_XPATH)
     await search[0].type(data)
-    await page.click(this.ID_ENVIA_BUSCA);
+    await page.click(this.ID_ENVIA_BUSCA)
     let elements: any = await page.evaluate(() => {
       return Array.from(document.querySelectorAll(this.ID_CLASS),
         (elements: any): any => {
@@ -84,8 +84,6 @@ class NavigationService {
     }
     return address
   }
-
-
 }
 
 export default NavigationService
