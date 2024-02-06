@@ -1,13 +1,14 @@
 import BrowserService from "./BrowserService";
 
-class PageService{
+class PageService {
   private browserService: BrowserService
   constructor() {
     this.browserService = new BrowserService()
   }
-  async page() {
+  async instance() {
     const browser = await this.browserService.browser()
-    return await browser.newPage()
+    const page = await browser.newPage()
+    return { browser, page }
   }
 }
 

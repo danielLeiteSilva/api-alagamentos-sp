@@ -16,7 +16,11 @@ class NavigationService {
     this.googleService = new GoogleService()
   }
   private async exec(data: object): Promise<any> {
-    const page: any = await this.pageService.page()
+    const instance: any = await this.pageService.instance()
+
+    const browser: any = await instance().browser
+    const page: any = await instance().page
+
     await page.goto(process.env.ALAGAMENTOS)
     await page.setViewport({
       width: 1080,
@@ -34,11 +38,10 @@ class NavigationService {
           return elements['innerText']
         })
     })
-
-    await this.sleep();
-    await page.close();
+    await this.sleep()
+    await page.close()
+    await browser.close()
     
-
     return elements.map((element: string): string => {
       return element.toLowerCase() + " - são paulo, sp"
     })
