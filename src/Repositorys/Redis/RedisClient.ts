@@ -5,15 +5,15 @@ class RedisClient extends RedisConnect {
     super()
   }
 
-  async get(key) {
+  async get(key: string): Promise<any> {
     const client = await this.connect()
     return await client.get(key)
   }
 
-  async set(key, value) {
+  async set(key: string, value: any): Promise<any> {
     const client = await this.connect()
     return await client.set(key, value)
   }
 }
 
-module.exports = RedisClient
+export default RedisClient

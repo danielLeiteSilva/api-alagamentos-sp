@@ -1,0 +1,6 @@
+
+class AlagamentosController{
+  constructor() {
+
+  }
+}

@@ -5,7 +5,7 @@ const fs = require("fs")
 const app = express()
 
 const { getDada } = require("./automation")
-const MongoClient = require("./MongoClient")
+const MongoClient = require("./src/Repositorys/MongoClient")
 const RedisClient = require("./RedisClient")
 
 const mongoClient = new MongoClient()
