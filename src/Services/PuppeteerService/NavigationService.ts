@@ -15,7 +15,7 @@ class NavigationService {
     this.pageService = new PageService()
     this.googleService = new GoogleService()
   }
-  private async exec(data: object): Promise<any> {
+  private async exec(data: string): Promise<any> {
     const instance: any = await this.pageService.instance()
 
     const browser: any = await instance().browser
@@ -41,7 +41,7 @@ class NavigationService {
     await this.sleep()
     await page.close()
     await browser.close()
-    
+
     return elements.map((element: string): string => {
       return element.toLowerCase() + " - são paulo, sp"
     })
@@ -65,24 +65,26 @@ class NavigationService {
     return date.split("/").join("-")
   }
 
-  public async run(data: object): Promise<Array<AddressModel>> {
+  public async run(data: string): Promise<Object> {
     const address: Array<AddressModel> = []
     const elements: any = await this.exec(data)
     try {
       for (let element of elements) {
         const result = await this.googleService
           .getCoordinates(this.formatAddress(element))
-
         address.push(new AddressModel(
           this.formatAddress(element),
-          result.message, 
+          result.message,
           this.formatHour(element)
         ))
       }
     } catch (error: any) {
       console.log(error)
     }
-    return address
+    return {
+      date: this.formatData(data),
+      address
+    }
   }
 }
 
