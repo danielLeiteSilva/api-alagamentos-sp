@@ -1,34 +1,53 @@
+import MongoClient from "../Repositorys/Mongo/MongoClient";
+import RedisClient from "../Repositorys/Redis/RedisClient";
+import NavigationService from "../Services/PuppeteerService/NavigationService";
+import Utils from "../Utils/Utils";
 
 class AlagamentosController {
-  constructor() {
+  private mongoClient: MongoClient;
+  private redisClient: RedisClient;
+  private navigationService: NavigationService;
 
+  constructor() {
+    this.mongoClient = new MongoClient();
+    this.redisClient = new RedisClient();
+    this.navigationService = new NavigationService();
   }
 
-  async execute(req: any, res: any) {
-    const body = req.body.data
+  public async execute(req: any, res: any) {
+    const body = req.body.data;
+
     try {
-      const findRedis = await redisClient.get(body)
+      const findRedis = await this.redisClient.get(body);
       if (!findRedis) {
-        const findMongo = await mongoClient.find({ date: formatData(body) })
+        const findMongo = await this.mongoClient.find({
+          date: Utils.formatData(body),
+        });
         if (!findMongo) {
-          const result = await getDada(body)
-          await mongoClient.add(result)
-          await redisClient.set(body, JSON.stringify(result))
-          res.status(200).json(result)
+          const result = await this.navigationService.run(body);
+          await this.mongoClient.add(result);
+          await this.redisClient.set(body, JSON.stringify(result));
+          res.status(200).json(result);
         } else {
-          await redisClient.set(body, JSON.stringify(findMongo))
-          res.status(200).json(findMongo)
+          await this.redisClient.set(body, JSON.stringify(findMongo));
+          res.status(200).json(findMongo);
         }
       } else {
-        const findMongo = await mongoClient.find({ date: formatData(body) })
+        const findMongo = await this.mongoClient.find({
+          date: Utils.formatData(body),
+        });
         if (!findMongo) {
-          const { _id, ...data } = JSON.parse(findRedis)
-          await mongoClient.add(data)
+          const { _id, ...data } = JSON.parse(findRedis);
+          await this.mongoClient.add(data);
         }
-        res.status(200).json(JSON.parse(findRedis))
+        res.status(200).json(JSON.parse(findRedis));
       }
-    } catch (error) {
-      res.status(400).json({ reponse: 'error', code: 400, message: error.message })
+    } catch (error: any) {
+      res
+        .status(400)
+        .json({ reponse: "error", code: 400, message: error.message });
     }
   }
 }
+
+export default new AlagamentosController();
