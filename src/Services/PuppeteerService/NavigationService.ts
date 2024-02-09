@@ -17,10 +17,8 @@ class NavigationService {
     this.googleService = new GoogleService();
   }
   private async exec(data: string): Promise<any> {
-    const instance: any = await this.pageService.instance();
-
-    const browser: any = await instance().browser;
-    const page: any = await instance().page;
+    await this.pageService.openBrowser();
+    const page: any = await this.pageService.openPage();
 
     await page.goto(process.env.ALAGAMENTOS);
     await page.setViewport({
@@ -43,7 +41,7 @@ class NavigationService {
     });
     await Utils.sleep();
     await page.close();
-    await browser.close();
+    await this.pageService.closeBrowser();
 
     return elements.map((element: string): string => {
       return element.toLowerCase() + " - são paulo, sp";

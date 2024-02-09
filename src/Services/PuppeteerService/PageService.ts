@@ -1,15 +1,24 @@
 import BrowserService from "./BrowserService";
 
 class PageService {
-  private browserService: BrowserService
+  private browserService: BrowserService;
+  private browser: any;
+
   constructor() {
-    this.browserService = new BrowserService()
+    this.browserService = new BrowserService();
   }
-  async instance() {
-    const browser = await this.browserService.browser()
-    const page = await browser.newPage()
-    return { browser, page }
+
+  async openBrowser(): Promise<any> {
+    this.browser = await this.browserService.browser();
+  }
+
+  async closeBrowser(): Promise<any> {
+    await this.browser.close();
+  }
+
+  async openPage(): Promise<any> {
+    return await this.browser.newPage();
   }
 }
 
-export default PageService
+export default PageService;

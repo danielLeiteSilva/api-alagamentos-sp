@@ -1,7 +1,7 @@
 class Utils {
   public static sleep(): Promise<void> {
     return new Promise((resolve) => {
-      setTimeout(resolve, 2000);
+      setTimeout(resolve, 1000);
     });
   }
 

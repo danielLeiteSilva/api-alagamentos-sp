@@ -1,26 +1,30 @@
-import { WithId } from "mongodb"
-import MongoConnect from "./MongoConnect"
+import { WithId } from "mongodb";
+import MongoConnect from "./MongoConnect";
 
 class MongoClient {
-  private client: MongoConnect
+  private client: MongoConnect;
+  private repository: any;
+
   constructor() {
-    this.client = new MongoConnect()
+    this.client = new MongoConnect();
+  }
+
+  async connect(): Promise<void> {
+    this.repository = await this.client.repository();
   }
 
   async find(query: object): Promise<WithId<Document> | null> {
-    const connect: any = await this.client.repository()
-    return await connect.findOne(query)
+    return await this.repository.findOne(query);
   }
 
   async add(data: any): Promise<WithId<Document> | null> {
-    const connect = await this.client.repository()
-    const info = await connect.findOne(data)
+    const info = await this.repository.findOne(data);
     if (!info) {
-      await connect.insertOne(data)
-      return await connect.findOne(data)
+      await this.repository.insertOne(data);
+      return await this.repository.findOne(data);
     }
-    return info
+    return info;
   }
 }
 
-export default MongoClient
+export default MongoClient;

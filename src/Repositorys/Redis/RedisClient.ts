@@ -1,19 +1,22 @@
-const RedisConnect = require("./RedisConnect");
+import RedisConnect from "./RedisConnect";
 
 class RedisClient extends RedisConnect {
+  private client: any;
   constructor() {
-    super()
+    super();
+  }
+
+  async connect(): Promise<void> {
+    this.client = await this.connect();
   }
 
   async get(key: string): Promise<any> {
-    const client = await this.connect()
-    return await client.get(key)
+    return await this.client.get(key);
   }
 
   async set(key: string, value: any): Promise<any> {
-    const client = await this.connect()
-    return await client.set(key, value)
+    return await this.client.set(key, value);
   }
 }
 
-export default RedisClient
+export default RedisClient;

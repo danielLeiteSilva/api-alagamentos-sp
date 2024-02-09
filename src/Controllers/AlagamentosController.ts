@@ -17,6 +17,9 @@ class AlagamentosController {
   public async execute(req: any, res: any) {
     const body = req.body.data;
 
+    this.redisClient.connect();
+    this.mongoClient.connect();
+
     try {
       const findRedis = await this.redisClient.get(body);
       if (!findRedis) {
