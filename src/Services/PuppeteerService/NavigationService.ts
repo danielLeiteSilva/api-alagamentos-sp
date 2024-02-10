@@ -1,47 +1,28 @@
 import AddressModel from "../../Models/AddressModel";
 import GoogleService from "../Google/GoogleService";
-import PageService from "./PageService";
+
 import Utils from "../../Utils/Utils";
+import ParseHtmlService from "../Crapping/ParseHtmlService";
 
 class NavigationService {
-  private readonly ID_BUSCA_XPATH: string = '//*[@id="campoBusca"]';
   private readonly ID_CLASS: string = ".arial-descr-alag.col-local";
-  private readonly ID_BUSCA: string = "#campoBusca";
-  private readonly ID_ENVIA_BUSCA: string = "#enviaBusca";
-
-  private pageService: PageService;
+  private parseHtmlService: ParseHtmlService;
   private googleService: GoogleService;
 
   constructor() {
-    this.pageService = new PageService();
     this.googleService = new GoogleService();
+    this.parseHtmlService = new ParseHtmlService();
   }
-  private async exec(data: string): Promise<any> {
-    await this.pageService.openBrowser();
-    const page: any = await this.pageService.openPage();
 
-    await page.goto(process.env.ALAGAMENTOS);
-    await page.setViewport({
-      width: 1080,
-      height: 1024,
-    });
-    await page.$eval(this.ID_BUSCA, (input: any): string => {
-      return (input.value = "");
-    });
-    const search: any = await page.$x(this.ID_BUSCA_XPATH);
-    await search[0].type(data);
-    await page.click(this.ID_ENVIA_BUSCA);
-    let elements: any = await page.evaluate(() => {
-      return Array.from(
-        document.querySelectorAll(this.ID_CLASS),
-        (elements: any): any => {
-          return elements["innerText"];
-        },
-      );
-    });
-    await Utils.sleep();
-    await page.close();
-    await this.pageService.closeBrowser();
+  private async exec(data: string): Promise<any> {
+    const document = await this.parseHtmlService.parseHTML(data);
+
+    const elements = Array.from(
+      document.querySelectorAll(this.ID_CLASS),
+      (elements: any): any => {
+        return elements["innerText"];
+      },
+    );
 
     return elements.map((element: string): string => {
       return element.toLowerCase() + " - são paulo, sp";
