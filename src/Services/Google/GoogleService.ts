@@ -8,9 +8,9 @@ class GoogleService {
           (error: any, response: any, body: any) => {
             if (!error) {
               if (response.statusCode === 200) {
-                const { location } = JSON.parse(body)['results'][0]['geometry']
+                const result = JSON.parse(body)['results'][0]?.geometry
                 resolve({
-                  message: location,
+                  message: result?.location,
                   code: response.statusCode
                 })
               } else {

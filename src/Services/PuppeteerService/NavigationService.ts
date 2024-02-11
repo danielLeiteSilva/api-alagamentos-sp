@@ -4,6 +4,8 @@ import GoogleService from "../Google/GoogleService";
 import Utils from "../../Utils/Utils";
 import ParseHtmlService from "../Crapping/ParseHtmlService";
 
+import { decode } from 'html-entities'
+
 class NavigationService {
   private readonly ID_CLASS: string = ".arial-descr-alag.col-local";
   private parseHtmlService: ParseHtmlService;
@@ -24,8 +26,10 @@ class NavigationService {
       },
     );
 
+    console.log(elements)
+
     return elements.map((element: string): string => {
-      return element.toLowerCase() + " - são paulo, sp";
+      return decode(element.toLowerCase() + " - são paulo, sp");
     });
   }
 
