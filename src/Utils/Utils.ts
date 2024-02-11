@@ -16,7 +16,7 @@ class Utils {
   public static formatData(date: string): string {
     return date.split("/").join("-");
   }
-
+  
   public static formatAmericanDate(date: string) {
     const [day, month, year] = date.split('/');
     return `${month}/${day}/${year}`;
@@ -33,8 +33,7 @@ class Utils {
     const differenceInMilliseconds = end_date - start_date;
     const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
     return differenceInDays;
-}
-
+  }
 }
 
 export default Utils;
