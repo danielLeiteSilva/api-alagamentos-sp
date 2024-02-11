@@ -4,10 +4,11 @@ class RedisClient extends RedisConnect {
   private client: any;
   constructor() {
     super();
+    this.client = {}
   }
 
   async connect(): Promise<void> {
-    this.client = await this.connect();
+    this.client = await this.connection();
   }
 
   async get(key: string): Promise<any> {

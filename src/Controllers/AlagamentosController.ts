@@ -14,12 +14,13 @@ class AlagamentosController {
     this.navigationService = new NavigationService();
   }
 
-  public async execute(req: any, res: any) {
+   execute = async (req: any, res: any) => {
     const body = req.body.data;
     try {
-      this.redisClient.connect();
-      this.mongoClient.connect();
-
+      await Promise.all([
+        this.redisClient.connect(),
+        this.mongoClient.connect()
+      ])
       const findRedis = await this.redisClient.get(body);
       if (!findRedis) {
         const findMongo = await this.mongoClient.find({

@@ -1,4 +1,4 @@
-import redis from 'redis'
+import * as redis from 'redis';
 
 class RedisConnect {
   private url: any
@@ -6,7 +6,7 @@ class RedisConnect {
     this.url = process.env.REDIS || ''
   }
   
-  async connect(): Promise<any> {
+  public async connection(): Promise<any> {
     return await redis.createClient({
       url: this.url
     }).on('error', (err: any): any => {
