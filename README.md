@@ -6,19 +6,21 @@ Essa é uma API que visa trazer dados de locais que tiveram alagamentos na cidad
 
 #### Retorna a data do alagamento e uma lista de endereços com latitude, longitude e hora dos alagamentos
 
-```http
-  GET /api/v1/alagamentos
-```
-
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `data` | `01/01/2020` | **Obrigatório** |
-
 #### Endereço de API
 
 ```url
 http://google.com.br
 ```
+
+#### Requisição HTTP
+
+```http
+  POST /api/v1/alagamentos/data
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `data` | `01/01/2020` | **Obrigatório** |
 
 #### Exemplo de requisição
 
@@ -44,4 +46,72 @@ http://google.com.br
         }
     ]
 }
+
+```
+##
+
+
+#### Retorna uma lista de datas dos alagamentos em um determinado intervalo
+
+#### Requisição HTTP
+
+```http
+  POST /api/v1/alagamentos/periodo
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `start_date` | `01/01/2020` | **Obrigatório** |
+| `end_date`   | `10/01/2020` | **Obrigatório** |
+
+
+#### Exemplo de requisição
+
+```JSON
+{
+  "start_date": "01/01/2020"
+  "end_date": "02/01/2020"
+}
+
+```
+
+#### Exemplo de retorno
+
+```JSON
+[
+    {
+        "date": "01-01-2024",
+        "list_address": [
+            {
+                "address": "r carlos garcia - sao paulo, sp",
+                "locale": {
+                    "lat": -23.5712518,
+                    "lng": -46.7694316
+                },
+                "hour": "de 06:34 a 08:07"
+            },
+            {
+                "address": "av santo amaro - sao paulo, sp",
+                "locale": {
+                    "lat": -23.5712518,
+                    "lng": -46.7694316
+                },
+                "hour": "de 06:34 a 08:07"
+            }
+        ]
+    },
+    {
+        "date": "02-01-2024",
+        "list_address": [
+            {
+                "address": "r universal - sao paulo, sp",
+                "locale": {
+                    "lat": -23.5712518,
+                    "lng": -46.7694316
+                },
+                "hour": "de 06:34 a 08:07"
+            }
+        ]
+    }
+]
 ```
