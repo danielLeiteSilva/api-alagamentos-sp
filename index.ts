@@ -6,6 +6,8 @@ import swaggerUi from "swagger-ui-express";
 
 const app: Express = express();
 
+const port = process.env.PORT || 8080
+
 import SwaggerService from "./src/Services/Swagger/SwaggerService";
 
 //Use
@@ -14,4 +16,4 @@ app.use('/api/v1/swagger-ui', swaggerUi.serve, swaggerUi.setup(SwaggerService.to
 app.use(express.json());
 app.use(router);
 
-app.listen(3000, () => console.log("Connected"));
+app.listen(port, () => console.log("Connected"));
