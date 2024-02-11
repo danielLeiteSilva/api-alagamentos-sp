@@ -4,16 +4,16 @@ class WebCrappingService {
   public getHTML(data: string): any {
     return new Promise((resolve, reject) => {
       request(
-        `${process.env.CGESP}?dataBusca=${data}&enviaBusca=Buscar`,
+        `${process.env.ALAGAMENTOS}?dataBusca=${data}&enviaBusca=Buscar`,
         (error, response, body) => {
           if (!error) {
             if (response.statusCode === 200) {
-              resolve(body);
+              resolve({ html: body, code: 200, message: '' });
             } else {
-              reject(response);
+              reject({ html: '', code: response.statusCode, message: response });
             }
           } else {
-            reject(error.message);
+            reject({ html: '', code: response.statusCode, message: error.message });
           }
         },
       );

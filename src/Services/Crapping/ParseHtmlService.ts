@@ -9,7 +9,7 @@ class ParseHtmlService {
   }
 
   public async parseHTML(data: string): Promise<any> {
-    const html = await this.webCrappingService.getHTML(data);
+    const { html } = await this.webCrappingService.getHTML(data);
     return parse(html);
   }
 }
