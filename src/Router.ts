@@ -5,6 +5,7 @@ import AlagamentosPeriodoController from "./Controllers/AlagamentosPeriodoContro
 
 const router: Router = express.Router();
 
+router.get("/", Alive);
 router.get("/api/v1", Alive);
 router.post("/api/v1/alagamentos/data", AlagamentosController.execute);
 router.post("/api/v1/alagamentos/periodo", AlagamentosPeriodoController.execute);
