@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "swagger-autogen": "node swagger.js",
-    "build": "tsc --build && npm run swagger-autogen",
+    "build": "npx tsc --build && npm run swagger-autogen",
     "start": "npm run build && npm run swagger-autogen && node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
