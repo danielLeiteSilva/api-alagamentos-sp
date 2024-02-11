@@ -14,6 +14,7 @@ class AlagamentosController {
     this.navigationService = new NavigationService();
   }
 
+
    execute = async (req: any, res: any) => {
     const body = req.body.data;
     try {

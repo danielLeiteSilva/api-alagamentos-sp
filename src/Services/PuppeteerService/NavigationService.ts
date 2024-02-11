@@ -26,8 +26,6 @@ class NavigationService {
       },
     );
 
-    console.log(elements)
-
     return elements.map((element: string): string => {
       return decode(element.toLowerCase() + " - são paulo, sp");
     });
