@@ -9,7 +9,8 @@ const app: Express = express();
 import SwaggerService from "./src/Services/Swagger/SwaggerService";
 
 //Use
-// app.use('/api/v1/swagger-ui', swaggerUi.serve, swaggerUi.setup(SwaggerService.toJson()));
+app.use('/api/v1/swagger-ui', swaggerUi.serve, swaggerUi.setup(SwaggerService.toJson()));
+
 app.use(express.json());
 app.use(router);
 
