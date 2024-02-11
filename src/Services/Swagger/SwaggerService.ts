@@ -4,7 +4,7 @@ import fs from "fs"
 class SwaggerService{
   private buffer: any
   constructor() {
-    this.buffer = fs.readFileSync(path.join(__dirname, 'swagger-output.json'))
+    this.buffer = fs.readFileSync(path.join(__dirname, '../../../..', 'swagger-output.json'))
   }
 
   toJson() {
