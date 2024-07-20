@@ -4,3 +4,4 @@ package-lock.json
 .replit
 replit.nix
 dist
+coverage

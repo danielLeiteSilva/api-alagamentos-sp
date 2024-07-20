@@ -1,6 +1,7 @@
-require("dotenv").config();
+import { config } from 'dotenv';
+config();
 
-import router from "./Router";
+import router from "./src/Router";
 import express, { Express } from "express";
 import swaggerUi from "swagger-ui-express";
 
@@ -8,7 +9,7 @@ const app: Express = express();
 
 const port = process.env.PORT || 8080
 
-import SwaggerService from "./Services/Swagger/SwaggerService";
+import SwaggerService from "./src/Services/Swagger/SwaggerService";
 
 //Use
 app.use('/api/v1/swagger-ui', swaggerUi.serve, swaggerUi.setup(SwaggerService.toJson()));

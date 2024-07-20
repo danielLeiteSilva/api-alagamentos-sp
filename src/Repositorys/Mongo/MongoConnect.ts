@@ -3,7 +3,7 @@ import { Collection, Db, MongoClient } from 'mongodb'
 class MongoConnect {
   private client: MongoClient
   constructor() {
-    this.client = new MongoClient(process.env.MONGO_URI || '')
+    this.client = new MongoClient(process.env.MONGO_URI as string || '')
   }
   async connect(): Promise<Db> {
     return this.client.db(process.env.DB_NAME)
