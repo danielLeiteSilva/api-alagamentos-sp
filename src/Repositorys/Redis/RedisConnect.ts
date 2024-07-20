@@ -9,7 +9,11 @@ class RedisConnect {
 
   public async connection(): Promise<any> {
     return await redis.createClient({
-      url: this.url
+      url: this.url,
+      socket: {
+        tls: true,
+        rejectUnauthorized: false
+      },
     }).on('error', (err: any): any => {
       console.log('Redis Client Error', err)
     }).connect();
