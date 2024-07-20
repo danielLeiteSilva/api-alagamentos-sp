@@ -1,6 +1,6 @@
 import MongoClient from "../Repositorys/Mongo/MongoClient";
 import RedisClient from "../Repositorys/Redis/RedisClient";
-import NavigationService from "../Services/PuppeteerService/NavigationService";
+import NavigationService from "../Services/Navigation/NavigationService";
 import Utils from "../Utils/Utils";
 
 class Strategy {
