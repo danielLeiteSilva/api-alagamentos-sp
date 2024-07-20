@@ -4,8 +4,7 @@
   "description": "",
   "main": "dist/src/index.js",
   "scripts": {
-    "swagger-autogen": "node ./swagger.js",
-    "build": "npx tsc --build && npm run swagger-autogen",
+    "build": "npx tsc --build",
     "test": "jest --coverage",
     "vercel-build": "npm run build"
   },
