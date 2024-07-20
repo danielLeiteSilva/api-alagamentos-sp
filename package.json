@@ -5,10 +5,9 @@
   "main": "dist/src/index.js",
   "scripts": {
     "swagger-autogen": "node ./swagger.js",
-    "build": "npx tsc --build && npm run swagger-autogen",
-    "start": "npm run build && node ./dist/index.js",
+    "build": "npx tsc --build && npm run swagger-autogen && node ./dist/src/index.js",
     "test": "jest --coverage",
-    "vercel-build": "npm run start"
+    "vercel-build": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +27,8 @@
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.0",
     "ts-jest": "^29.2.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vercel": "^35.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
