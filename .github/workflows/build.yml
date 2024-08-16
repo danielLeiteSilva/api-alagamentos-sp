@@ -3,6 +3,9 @@ name: 'Build Node'
 
 on: 
   workflow_dispatch:
+  push: 
+    branches: 
+      - wf-test
 
 jobs: 
   build:
